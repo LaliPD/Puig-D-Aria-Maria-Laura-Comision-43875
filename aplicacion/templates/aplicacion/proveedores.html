@@ -1,0 +1,48 @@
+{% extends 'aplicacion/base.html' %}
+{% load static %}
+<body>
+    {% block contenido %}
+    <h1>Lista de Proveedores</h1>
+    <a href="{% url 'create_proveedores' %}" class="btn btn-primary btn-sm">
+      <i class="fa fa-plus fa-lg" title="New Record"></i>
+  </a>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Empresa</th>
+          <th>Vendedor</th>
+          <th>Teléfono de Contacto</th>
+          <th>Dirección</th>
+          <th>Email</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for proveedor in proveedores %}
+          <tr>
+            <td>{{ proveedor.nombre_empresa }}</td>
+            <td>{{ proveedor.vendedor }}</td>
+            <td>{{ proveedor.telefono_contacto }}</td>
+            <td>{{ proveedor.direccion }}</td>
+            <td>{{ proveedor.email }}</td>
+            <td>
+              <a href="{% url 'update_proveedores' pk=proveedor.id %}" class="btn btn-primary">
+                  <i class="fa fa-edit fa-sm" title="Edit Record"></i>
+              </a>
+              <a href="{% url 'delete_proveedores' pk=proveedor.id %}" class="btn btn-danger">
+                  <i class="fa fa-trash fa-sm" title="Delete Record"></i>
+              </a>
+          </td> 
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="5">No hay proveedores registrados.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endblock contenido %}
+
+</body>
+</html>

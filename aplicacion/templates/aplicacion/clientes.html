@@ -1,0 +1,53 @@
+{% extends 'aplicacion/base.html' %}
+{% load static %}
+<body>
+    
+    {% block contenido %}
+    <h1>Clientes</h1>
+    <a href="{% url 'create_clientes' %}" class="btn btn-primary btn-sm">
+        <i class="fa fa-plus fa-lg" title="New Record"></i>
+    </a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre de la empresa</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in clientes %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td>{{ c.nombre_empresa }}</td>
+                <td>{{ c.telefono_contacto }}</td>
+                <td>{{ c.direccion }}</td>
+                <td>{{ c.email }}</td>
+                <td>
+                    <a href="{% url 'update_clientes' pk=c.id %}" class="btn btn-primary">
+                        <i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                    </a>
+                    <a href="{% url 'delete_clientes' pk=c.id %}" class="btn btn-danger">
+                        <i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                    </a>
+                </td> 
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'buscar_cliente' %}" class="btn btn-primary btn-sm">
+            <i class="fa fa-search" style="margin-right: 5px;"></i> Buscar Clientes
+        </a>
+    </div>
+    
+
+   {% endblock contenido %}
+    
+</body>
+</html>

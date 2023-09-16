@@ -1,0 +1,34 @@
+{% extends 'aplicacion/base.html' %}
+{% load static %}
+<body>
+    {% block contenido %}
+    
+  
+    <table class="table table-dark table-striped">
+
+    </table>
+    
+    <div class="form-container">
+        <h2>Buscar Cliente</h2>
+        <form action="/buscar2" method="get">
+            {% csrf_token %}
+            <p>Buscar: <input type="text" name= "buscar" id="buscar"></p>
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+    
+    <style>
+        .form-container {
+            width: 50%; 
+            margin: 0 auto; 
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f8f9;
+        }
+    
+        
+    </style>
+  {% endblock contenido %}
+
+</body>
+</html>
